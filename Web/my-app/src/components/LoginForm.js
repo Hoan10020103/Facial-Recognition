@@ -1,11 +1,28 @@
 import React from "react";
 import { useState } from "react";
 
-const LoginForm = ({login, error}) => {
+const LoginForm = ({login, register, error, lst}) => {
     const [userDetail, setUserDetail] = useState({ username: '', password: '' });
+    const [registerState, setRegisterState] = useState(false);
     const submitHandler = (e) => {
         e.preventDefault();
-        login(userDetail);
+        if (!registerState) {
+            login(userDetail);
+        } else {
+            register(userDetail);
+            setRegisterState(false);
+        }
+    };
+
+    const myStyle = {
+        color: "white",
+        backgroundColor: "red",
+        padding: "10px",
+        marginLeft: "10px",
+    };
+
+    const registerClick = () => {
+        setRegisterState(true);
     }
 
     return (
@@ -26,6 +43,7 @@ const LoginForm = ({login, error}) => {
                     <input type="password" name="password" id="password" onChange={e => setUserDetail({...userDetail, password: e.target.value})} value={userDetail.password} />
                 </div>
                 <input type="submit" value="login" />
+                <input style={myStyle} onClick={registerClick} type="submit" value="register" />
             </div>
         </form>
     )
