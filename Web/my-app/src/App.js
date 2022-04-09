@@ -51,9 +51,15 @@ function App() {
         <div className="welcome">
           <h2>Welcome, <span>{user.username}</span></h2>
           <button onClick={Logout}>Logout</button>
-          { userList.map((value) => {
-            return <h1>username: {value.username} | password: {value.passwords}</h1> 
-          }) }
+          
+          <table>
+            <tr>
+              <th>Username</th>
+              <th>Password</th>
+            </tr>
+
+          </table>
+
         </div>
       ) : (
         <LoginForm login={Login} register={Register} error={error} lst={userList} />
@@ -61,5 +67,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
