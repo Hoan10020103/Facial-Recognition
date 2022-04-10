@@ -105,7 +105,7 @@ form .form-inner input[type="submit"]:hover,
 
 .welcome {
   width: 100%;
-  max-width: 480px;
+  max-width: 1020px;
   background-color: #fff;
   padding: 15px 30px;
 }
@@ -123,9 +123,18 @@ form .form-inner input[type="submit"]:hover,
 }
 
 
-th {
-  border: 1px solid;
-  padding: 10px 70px;
-  text-align: center;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
