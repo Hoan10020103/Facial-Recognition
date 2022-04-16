@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import LoginForm from "./components/LoginForm";
+import UserTable from "./components/Table";
 import Axios from 'axios';
 
 function App() {
@@ -8,9 +9,7 @@ function App() {
   const [userList, setUserList] = useState([]);
 
   const Login = (details) => {
-    console.log(details);
     for (let i = 0; i < userList.length; i++) {
-      console.log(userList[i]);
       if (details.username === userList[i].username && details.password === userList[i].passwords) {
         console.log('Login');
         setUser({username: userList[i].username, password: userList[i].password});
@@ -51,9 +50,7 @@ function App() {
         <div className="welcome">
           <h2>Welcome, <span>{user.username}</span></h2>
           <button onClick={Logout}>Logout</button>
-          { userList.map((value) => {
-            return <h1>username: {value.username} | password: {value.passwords}</h1> 
-          }) }
+          <UserTable users={userList} />
         </div>
       ) : (
         <LoginForm login={Login} register={Register} error={error} lst={userList} />
@@ -61,5 +58,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
