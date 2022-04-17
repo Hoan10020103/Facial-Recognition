@@ -18,8 +18,8 @@ BATCH_SIZE = 8
 PRE_PATCH = 4
 EPOCHS = 30
 # choose detection and verification threshold
-DETECTION = 0.9
-VERIFICATION = 0.9
+DETECTION = 0.8
+VERIFICATION = 0.8
 
 # configure GPU
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -240,15 +240,15 @@ def facial_recognition(name, pos_path):
 
         # Detection Threshold: Metric above which a prediction is considered positive
         detection = np.sum(np.array(results) > detection_threshold)
-        # detected = []
-        # for x in range(0,8):
-        #     detected.append(np.sum(np.array(results) > (0.5 + x/20)) / len(os.listdir(os.path.join(VER_PATH))))
+        detected = []
+        for x in range(0,8):
+            detected.append(np.sum(np.array(results) > (0.5 + x/20)) / len(os.listdir(os.path.join(VER_PATH))))
 
         # Verification Threshold: Proportion of positive predictions / total positive samples
         verification = detection / len(os.listdir(os.path.join(VER_PATH)))
         verified = verification > verification_threshold
 
-        return verified
+        return detected, verified
 
     VER_PATH = os.path.join('application_data', 'verification_img')
     INPUT_PATH = os.path.join('application_data', 'input_img')
@@ -277,8 +277,9 @@ def facial_recognition(name, pos_path):
         if cv2.waitKey(100) & 0xFF == ord('v'):
             cv2.imwrite(os.path.join(INPUT_PATH, 'input_image.jpg'), frame)
             # Run verification
-            allow_access = verify(siamese_model, DETECTION, VERIFICATION)
+            result, allow_access = verify(siamese_model, DETECTION, VERIFICATION)
             print(allow_access)
+            print(result)
  
         if cv2.waitKey(100) & 0xFF == ord('q'):
             break
