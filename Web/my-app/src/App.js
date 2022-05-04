@@ -8,11 +8,29 @@ function App() {
   const [error, setError] = useState('');
   const [userList, setUserList] = useState([]);
 
+  function handlePostQuery(query){
+    if (query !== "") {
+      Axios.post('http://localhost:5000/post', query)
+          .then(function(response){
+              console.log(response);
+              window.location.reload(false);
+      //Perform action based on response
+      })
+      .catch(function(error){
+          console.log(error);
+      //Perform action based on error
+      });
+    } else {
+      alert("The search query cannot be empty")
+    }
+  }
+
   const Login = (details) => {
-    for (let i = 0; i < userList.length; i++) {
-      if (details.username === userList[i].username && details.password === userList[i].passwords) {
+    console.log(details);
+    for (let i = 0; i < userList.users.length; i++) {
+      if (details.username === userList.users[i][1] && details.password === userList.users[i][2]) {
         console.log('Login');
-        setUser({username: userList[i].username, password: userList[i].password});
+        setUser({username: details.username, password: details.password});
         return ;
       }
     }
@@ -22,17 +40,12 @@ function App() {
 
   const Register = (details) => {
     console.log('register');
-    Axios.post('http://localhost:3001/api/insert', {
-        username: details.username,
-        passwords: details.password,
-    }).then(() => {
-        alert('operation success !');
-    });
-    window.location.reload(false);
+    console.log(details);
+    handlePostQuery({ username: details.username, password: details.password })
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:3001/api/get').then((res) => {
+    Axios.get('http://localhost:5000/get').then((res) => {
       console.log(res.data);
       setUserList(res.data);
     })
@@ -50,7 +63,7 @@ function App() {
         <div className="welcome">
           <h2>Welcome, <span>{user.username}</span></h2>
           <button onClick={Logout}>Logout</button>
-          <UserTable users={userList} />
+          <UserTable users={userList.users} />
         </div>
       ) : (
         <LoginForm login={Login} register={Register} error={error} lst={userList} />
