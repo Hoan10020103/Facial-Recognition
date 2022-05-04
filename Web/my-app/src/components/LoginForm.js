@@ -1,9 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const LoginForm = ({login, register, error, lst}) => {
     const [userDetail, setUserDetail] = useState({ username: '', password: '' });
     const [registerState, setRegisterState] = useState(false);
+
     const submitHandler = (e) => {
         e.preventDefault();
         if (!registerState) {

@@ -8,10 +8,10 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: 'sql6.freemysqlhosting.net',
-    user: 'sql6483347',
-    password: 'TbGln1ghuY',
-    database: 'sql6483347'
+    host: 'localhost',
+    user: 'root',
+    password: 'Chip1018!',
+    database: 'players'
 });
 
 db.connect(function(err) {
@@ -22,7 +22,7 @@ db.connect(function(err) {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api/get', (req, res) => {
-    const sqlInsert = "SELECT * FROM sql6483347.users;";
+    const sqlInsert = "SELECT * FROM players.info;";
     db.query(sqlInsert, function (err, result) {
         if (err) throw err;
         res.send(result);
@@ -33,7 +33,7 @@ app.get('/api/get', (req, res) => {
 app.post('/api/insert', (req, res) => {
     const username = req.body.username;
     const passwords = req.body.passwords;
-    const sqlInsert = "INSERT INTO sql6483347.users (username, passwords) VALUES (?, ?);";
+    const sqlInsert = "INSERT INTO players.info (username, passwords) VALUES (?, ?);";
     db.query(sqlInsert, [username, passwords],function (err, result) {
         if (err) throw err;
         console.log("Success!");
