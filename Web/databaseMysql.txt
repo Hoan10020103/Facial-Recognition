@@ -1,0 +1,11 @@
+DROP TABLE players.info;
+USE players;
+CREATE TABLE info (
+	id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    passwords VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+INSERT INTO info (username, passwords) VALUES ('barry', '123');
+INSERT INTO info (username, passwords) VALUES ('bart', '123');
+INSERT INTO info (username, passwords) VALUES ('Luthor', '321');
