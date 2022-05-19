@@ -21,13 +21,11 @@ The page will reload if you make edits.
 
 # Installation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Before start working, please run below commands
+This project was bootstrapped with Flask.
+Before start working, please install all flask dependencies as well as mysql-python-connector,
 
-- `npx install` Install packages
-- `npx install -g nodemon` Install nodemon
 
-### `npm run devStart`
+### `python main.py`
 Runs the app in the development mode.
 Open http://localhost:3001 to view it in the browser.
 
