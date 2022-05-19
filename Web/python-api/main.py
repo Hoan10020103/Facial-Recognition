@@ -6,7 +6,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="Chip1018!",
-  database="players",
+  database="users",
 )
 
 print(mydb)
@@ -21,7 +21,7 @@ def HelloWorld():
 @app.route("/get")
 def get_users():
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM players.info;")
+    mycursor.execute("SELECT * FROM info;")
     myresult = mycursor.fetchall()
     return {'users': myresult}
 
@@ -30,13 +30,14 @@ def get_users():
 def get_query_from_react():
     username = request.json['username']
     password = request.json['password']
+    picture = request.json['pictures']
     data = request.get_json()
     print(data)
     print(username)
     print(password)
     mycursor = mydb.cursor()
-    sql = "INSERT INTO info (username, passwords) VALUES (%s, %s);"
-    val = (username, password)
+    sql = "INSERT INTO info (username, passwords, pictures) VALUES (%s, %s, %s);"
+    val = (username, password, picture)
     mycursor.execute(sql, val)
     mydb.commit()
     return data
