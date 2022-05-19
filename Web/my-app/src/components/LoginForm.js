@@ -63,7 +63,7 @@ const LoginForm = ({ login, register, error }) => {
           <Modal show={show} onHide={handleClose}>
             <Modal.Body style={{"text-align": "center"}}>
               <div className="cameraForm">
-                  <Webcam ref={webRef} />
+                  <Webcam ref={webRef} style={{"width":"500px", "height":"400px"}} />
                   <div className="welcome">
                       <button onClick={Capture}>Capture</button>
                   </div>
