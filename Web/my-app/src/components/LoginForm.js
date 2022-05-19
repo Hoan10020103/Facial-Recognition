@@ -28,9 +28,11 @@ const LoginForm = ({ login, register, error }) => {
 
     const myStyle = {
         color: "white",
-        backgroundColor: "red",
+        backgroundColor: "blue",
         padding: "10px",
         marginLeft: "10px",
+        borderRadius: "8px",
+        transition: "0.4s",
     };
 
     const registerClick = () => {
@@ -41,21 +43,21 @@ const LoginForm = ({ login, register, error }) => {
         <div>
           <form id="myform" onSubmit={submitHandler}>
               <div className="form-inner">
-                  <h2>Login</h2>
-                  {/*Error */
-                      (error !== '') ? (
-                          <div className="error">{error}</div>
-                      ) : null
-                  }
-                  <div className="form-group">
-                      <label htmlFor="username">Name</label>
-                      <input type="text" name="username" id="username" onChange={e => setUserDetail({...userDetail, username: e.target.value})} value={userDetail.username} />
-                  </div>
-                  <div className="form-group">
-                      <label htmlFor="password">Password</label>
-                      <input type="password" name="password" id="password" onChange={e => setUserDetail({...userDetail, password: e.target.value})} value={userDetail.password} />
-                  </div>
-                  <button onClick={handleShow}>Register</button>
+                    <h2>Login</h2>
+                    {/*Error */
+                        (error !== '') ? (
+                            <div className="error">{error}</div>
+                        ) : null
+                    }
+                    <div className="form-group">
+                        <label htmlFor="username">Name</label>
+                        <input type="text" name="username" id="username" onChange={e => setUserDetail({...userDetail, username: e.target.value})} value={userDetail.username} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" id="password" onChange={e => setUserDetail({...userDetail, password: e.target.value})} value={userDetail.password} />
+                    </div>
+                    <button style={myStyle} onClick={handleShow}>Show Form</button>
               </div>
           </form>
           <Modal show={show} onHide={handleClose}>
