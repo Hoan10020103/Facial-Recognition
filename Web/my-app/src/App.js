@@ -4,7 +4,7 @@ import UserTable from "./components/Table";
 import Axios from 'axios';
 
 function App() {
-  const [user, setUser] = useState({ username: '', password: '' });
+  const [user, setUser] = useState({ username: '', password: '', pictures: '' });
   const [error, setError] = useState('');
   const [userList, setUserList] = useState([]);
 
@@ -41,7 +41,7 @@ function App() {
   const Register = (details) => {
     console.log('register');
     console.log(details);
-    handlePostQuery({ username: details.username, password: details.password })
+    handlePostQuery({ username: details.username, password: details.password, pictures: details.pictures })
   }
 
   useEffect(() => {

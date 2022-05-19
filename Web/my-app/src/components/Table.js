@@ -14,7 +14,7 @@ const UserTable = ({users}) => {
               <tr>
                 <td>{user[1]}</td>
                 <td>{user[2]}</td>
-                <td><img src="../../image/natsu.jpg" /></td>
+                <td><img src={user[3]} style={{"width":"100px", "height":"100px"}} alt="" /></td>
               </tr>
           ))
       }
